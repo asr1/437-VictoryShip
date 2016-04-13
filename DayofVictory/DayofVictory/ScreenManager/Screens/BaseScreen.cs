@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DayofVictory.ScreenManager
+using DayofVictory.ScreenManager;
 
 namespace DayofVictory.ScreenManager.Screens
 {

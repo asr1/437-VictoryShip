@@ -6,21 +6,18 @@ using DayofVictory.ScreenManager.Screens
 
 namespace DayofVictory.ScreenManager
 {
-    class ScreenManager
-    {
-    
         //Literally copy/pasted from Alex's 437 Asteroids
         enum ScreenState { Active, Shutdown, Hidden }
 
+    class ScreenManager
+    {
             public static List<BaseScreen> screens = new List<BaseScreen>();
             //Used so we can remove without affecting index numbers
             private static List<BaseScreen> newScreens = new List<BaseScreen>();
-            private Controls control = new Controls();
-
 
             public ScreenManager()
             {
-                addScreen(control);
+
             }
 
             public void Update(float delta)
@@ -53,12 +50,6 @@ namespace DayofVictory.ScreenManager
                 }
                 newScreens.Clear();
 
-                //Reset control overlay to top of screen
-                screens.Remove(control);
-                screens.Add(control);
-
-
-
                 //Figure out which screen to focus.
                 for (int i = screens.Count - 1; i >= 0; i--)
                 {
@@ -72,12 +63,8 @@ namespace DayofVictory.ScreenManager
                 //And then process that screen appropriately.
                 foreach (BaseScreen foundScreen in screens)
                 {
-                    //We can have multiple screens at once.
-                    if (Globals.windowFocused)
-                    {
-                        foundScreen.HandleInput();
-                    }
-                    foundScreen.Update(delta);//Update no matter what
+                    foundScreen.HandleInput();
+                    foundScreen.Update(delta);
                 }
                 return;
             }//Update
