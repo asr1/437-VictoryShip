@@ -14,7 +14,7 @@ namespace DayofVictory
         [STAThread]
         static void Main()
         {
-            using (var game = new DayOfVictory())
+            using (var game = new Game1())
                 game.Run();
         }
     }

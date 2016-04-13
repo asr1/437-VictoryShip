@@ -8,12 +8,12 @@ namespace DayofVictory
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class DayOfVictory : Game
+    public class Game1 : Game
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        public DayOfVictory()
+        public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";

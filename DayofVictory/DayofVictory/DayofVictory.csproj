@@ -44,9 +44,12 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="DayOfVictory.cs" />
+    <Compile Include="Game1.cs" />
+    <Compile Include="Globals\Resources\Fonts.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScreenManager\ScreenManager.cs" />
+    <Compile Include="ScreenManager\Screens\BaseScreen.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
