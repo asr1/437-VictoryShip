@@ -44,6 +44,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Ship.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Globals\Resources\Fonts.cs" />
     <Compile Include="Program.cs" />

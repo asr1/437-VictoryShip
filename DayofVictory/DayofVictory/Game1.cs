@@ -13,6 +13,8 @@ namespace DayofVictory
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        private bool playersTurn;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -28,6 +30,7 @@ namespace DayofVictory
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            playersTurn = true;
 
             base.Initialize();
         }
@@ -80,6 +83,11 @@ namespace DayofVictory
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+        }
+
+        public bool IsPlayersTurn()
+        {
+            return playersTurn;
         }
     }
 }

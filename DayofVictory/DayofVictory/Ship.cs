@@ -7,7 +7,9 @@ namespace DayofVictory
     {
         private const int WATER_PER_HOLE = 1;
 
-        private const int MAX_WATER = 100;
+        public const int MAX_WATER = 100;
+
+        private Game1 game;
 
         private int water;
         private int holes;
@@ -16,9 +18,10 @@ namespace DayofVictory
 
         private Vector2 pos;
 
-        public Ship(Game game, Texture2D texture) : base(game)
+        public Ship(Game theGame, Texture2D texture) : base(theGame)
         {
             this.texture = texture;
+            this.game = (Game1) theGame;
         }
 
         public void SetPosition(Vector2 pos)
@@ -29,6 +32,11 @@ namespace DayofVictory
         public void AddHole()
         {
             holes++;
+        }
+
+        public void TakeDamage()
+        {
+            water += holes * WATER_PER_HOLE;
         }
 
         public int WaterTaken()
@@ -46,19 +54,9 @@ namespace DayofVictory
             return water < MAX_WATER;
         }
 
-        public override void Update(GameTime gameTime)
+        public override void Draw()
         {
-            base.Update(gameTime);
-
-            if(gameTime.ElapsedGameTime.Seconds >= 1)
-            {
-                water += holes * WATER_PER_HOLE;
-            }
-        }
-
-        public override void Draw(GameTime gameTime)
-        {
-            base.Draw(gameTime);
+            //TODO SpriteBatch.Draw it
         }
     }
 }
