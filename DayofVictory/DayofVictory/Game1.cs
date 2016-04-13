@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -41,7 +42,7 @@ namespace DayofVictory
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: call all resource.load() methods
-            Globals.Resources.Fonts.load();
+            //Globals.Resources.Fonts.load();
         }
 
         /// <summary>
