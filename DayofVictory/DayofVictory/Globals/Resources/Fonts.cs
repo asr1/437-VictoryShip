@@ -2,6 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
+
 
 //The Resources namespace should be used for 
 //Fonts, sounds, textures, and models, and should be
@@ -11,11 +15,11 @@ namespace DayofVictory.Globals.Resources
 {
     class Fonts
     {
-          //public static spritefont font1;
+          public static SpriteFont Georgia_16;
 
         public static void load()
         {
-            //font1 = Globals.content.load<Spritefont("font1");
+            Georgia_16 = Globals.content.Load<SpriteFont>("fonts/Georgia_16");
         }
     }
 }

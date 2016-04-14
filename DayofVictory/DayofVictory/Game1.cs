@@ -43,13 +43,15 @@ namespace DayofVictory
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            
+            Globals.Globals.spriteBatch = spriteBatch;
+            Globals.Globals.content = Content; //Give global handlers to things we need
+
             //TODO
-            //Ship playerShip = new Ship();
-            //Ship enemyShip = new Ship();
+            Ship playerShip = new Ship(this, null);
+            Ship enemyShip = new Ship(this, null);
 
             // TODO: call all resource.load() methods
-            //Globals.Resources.Fonts.load();
+           Globals.Resources.Fonts.load();
         }
 
         /// <summary>
