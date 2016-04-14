@@ -14,7 +14,7 @@ namespace DayofVictory.ScreenManager.Screens
             state = ScreenState.Active;
         }
 
-        public override void Update()
+       public override void Update(float delta)
         {
             //Keep the HUDScreen on top. //Is this necessary, strictly speaking?
             //Like, it clearly needs to be on top. But wouldn't it be sufficient

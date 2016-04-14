@@ -12,6 +12,7 @@ namespace DayofVictory
     {
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
+        private ScreenManager.ScreenManager screenManager;
 
         private bool playersTurn;
 
@@ -46,12 +47,15 @@ namespace DayofVictory
             Globals.Globals.spriteBatch = spriteBatch;
             Globals.Globals.content = Content; //Give global handlers to things we need
 
-            //TODO
             Ship playerShip = new Ship(this, null);
             Ship enemyShip = new Ship(this, null);
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();
+
+           screenManager = new ScreenManager.ScreenManager();
+            //Add title screen here if we want it
+           ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameScreen());
         }
 
         /// <summary>

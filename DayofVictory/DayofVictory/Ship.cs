@@ -54,9 +54,9 @@ namespace DayofVictory
             return water < MAX_WATER;
         }
 
-        //public override void Draw()
-        //{
-        //    //TODO SpriteBatch.Draw it
-        //}
+        public override void Draw(GameTime gameTime)
+        {
+            //TODO SpriteBatch.Draw it
+        }
     }
 }
