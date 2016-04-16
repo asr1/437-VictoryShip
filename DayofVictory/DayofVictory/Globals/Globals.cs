@@ -13,5 +13,8 @@ namespace DayofVictory.Globals
     {
        public static SpriteBatch spriteBatch;
        public static Microsoft.Xna.Framework.Content.ContentManager content;
+       public static GraphicsDeviceManager graphics;
+       public static Vector2 gameSize;
+
     }
 }

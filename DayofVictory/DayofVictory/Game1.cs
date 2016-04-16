@@ -10,15 +10,19 @@ namespace DayofVictory
     /// </summary>
     public class Game1 : Game
     {
-        GraphicsDeviceManager graphics;
+        public const int GAME_SIZE_X = 800, GAME_SIZE_Y = 400;
         SpriteBatch spriteBatch;
         private ScreenManager.ScreenManager screenManager;
+                             
+        //I really wish we didn't do it this way, for what it's worth.
+        public static Ship playerShip;
+        public static Ship enemyShip; 
 
         private bool playersTurn;
 
         public Game1()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Globals.Globals.graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -32,6 +36,12 @@ namespace DayofVictory
         {
             // TODO: Add your initialization logic here
             playersTurn = true;
+
+            //For what it's worth, I also object to these namespaces.
+            Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
+            Globals.Globals.graphics.PreferredBackBufferWidth = (int)Globals.Globals.gameSize.X;
+            Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
+            Globals.Globals.graphics.ApplyChanges();
 
             base.Initialize();
         }
@@ -47,8 +57,8 @@ namespace DayofVictory
             Globals.Globals.spriteBatch = spriteBatch;
             Globals.Globals.content = Content; //Give global handlers to things we need
 
-            Ship playerShip = new Ship(this, null);
-            Ship enemyShip = new Ship(this, null);
+            playerShip = new Ship(this, null);
+            enemyShip = new Ship(this, null);
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();

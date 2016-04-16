@@ -14,11 +14,15 @@ namespace DayofVictory.Globals.Resources
     {
         public static Texture2D overlay;
         public static Texture2D rightArrow;
+        public static Texture2D water;
+        public static Texture2D selectbar;
 
         public static void load()
         {
             overlay = Globals.content.Load<Texture2D>("texturs/overlay");
             rightArrow = Globals.content.Load<Texture2D>("texturs/rightarrow");
+            water = Globals.content.Load<Texture2D>("texturs/water");
+            selectbar = Globals.content.Load<Texture2D>("texturs/Selectbar");
         }
 
     }
