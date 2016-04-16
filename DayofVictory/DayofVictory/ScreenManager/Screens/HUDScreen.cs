@@ -78,8 +78,6 @@ namespace DayofVictory.ScreenManager.Screens
 
         }
 
-
-
         public override void HandleInput()
         {
             base.HandleInput();
@@ -110,7 +108,7 @@ namespace DayofVictory.ScreenManager.Screens
                 } while (Entries[(int)selection].Enabled == false);
             }
 
-            if (Globals.Input.keyPressed(Keys.Enter) || Globals.Input.buttonPressed(Buttons.A, PlayerIndex.One))
+            if (Game1.IsPlayersTurn() && (Globals.Input.keyPressed(Keys.Enter) || Globals.Input.buttonPressed(Buttons.A, PlayerIndex.One)))
             {
                 switch (selection)
                 {
@@ -124,6 +122,7 @@ namespace DayofVictory.ScreenManager.Screens
                         //Is there no way for the player ship to remove a hole?
                         break;
                 }
+                Game1.setPlayersTurn(false);
             }
 
         }

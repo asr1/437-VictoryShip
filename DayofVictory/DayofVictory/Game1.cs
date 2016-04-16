@@ -18,7 +18,7 @@ namespace DayofVictory
         public static Ship playerShip;
         public static Ship enemyShip; 
 
-        private bool playersTurn;
+        private static bool playersTurn;
 
         public Game1()
         {
@@ -105,9 +105,20 @@ namespace DayofVictory
             base.Draw(gameTime);
         }
 
-        public bool IsPlayersTurn()
+        //This is probably not where this should be living.
+        public static bool IsPlayersTurn()
         {
             return playersTurn;
+        }
+
+        public static void setPlayersTurn(bool turn)
+        {
+            playersTurn = turn;
+        }
+
+        public static void togglePlayersTurn()
+        {
+            playersTurn = !playersTurn;
         }
     }
 }
