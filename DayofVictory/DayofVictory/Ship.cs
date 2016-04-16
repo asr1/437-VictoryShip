@@ -3,7 +3,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace DayofVictory
 {
-    class Ship : DrawableGameComponent
+    public class Ship : DrawableGameComponent
     {
         private const int WATER_PER_HOLE = 1;
 
