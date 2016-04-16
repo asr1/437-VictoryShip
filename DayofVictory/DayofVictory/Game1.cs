@@ -66,7 +66,7 @@ namespace DayofVictory
 
            screenManager = new ScreenManager.ScreenManager();
             //Add title screen here if we want it
-           ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.HUDScreen());
+           ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameScreen());
         }
 
         /// <summary>
