@@ -62,10 +62,11 @@ namespace DayofVictory
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();
+           Globals.Resources.Textures.load();
 
            screenManager = new ScreenManager.ScreenManager();
             //Add title screen here if we want it
-           ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameScreen());
+           ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.HUDScreen());
         }
 
         /// <summary>
@@ -86,10 +87,12 @@ namespace DayofVictory
         {
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            float delta = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // TODO: Add your update logic here
 
             base.Update(gameTime);
+            screenManager.Update(delta);
         }
 
         /// <summary>
@@ -103,6 +106,7 @@ namespace DayofVictory
             // TODO: Add your drawing code here
 
             base.Draw(gameTime);
+            screenManager.Draw();
         }
 
         //This is probably not where this should be living.

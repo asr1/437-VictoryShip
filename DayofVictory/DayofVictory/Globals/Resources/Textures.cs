@@ -19,10 +19,10 @@ namespace DayofVictory.Globals.Resources
 
         public static void load()
         {
-            overlay = Globals.content.Load<Texture2D>("texturs/overlay");
-            rightArrow = Globals.content.Load<Texture2D>("texturs/rightarrow");
-            water = Globals.content.Load<Texture2D>("texturs/water");
-            selectbar = Globals.content.Load<Texture2D>("texturs/Selectbar");
+            overlay = Globals.content.Load<Texture2D>("textures/overlay");
+            rightArrow = Globals.content.Load<Texture2D>("textures/rightarrow");
+            water = Globals.content.Load<Texture2D>("textures/water");
+            selectbar = Globals.content.Load<Texture2D>("textures/Selectbar");
         }
 
     }
