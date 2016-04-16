@@ -14,20 +14,29 @@ namespace DayofVictory.ScreenManager.Screens
 {
     class HUDScreen : BaseScreen
     {
-        private Vector2 MenuSize = new Vector2(250, 160);
+        private List<Utilities.MenuEntry> Entries = new List<Utilities.MenuEntry>();
+        private options selection = options.ATTACK;
+        private int triangleY;
 
-    //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
+        private Vector2 menuSize = new Vector2(250, 160);
+        private Vector2 menuPos = new Vector2(0, Globals.Globals.gameSize.Y / 3);
+
+        //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
 
 
         public HUDScreen()
         {
             name = "HUDScreen";
             state = ScreenState.Active;
+
+            updateEntries();
+
         }
 
         public override void Update(float delta)
         {
             base.Update(delta);
+            updateEntries();
         }
 
         public override void Draw()
@@ -43,12 +52,101 @@ namespace DayofVictory.ScreenManager.Screens
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.playerShip.WaterTaken() / Ship.MAX_WATER, 10), Color.White);
 
             //Overlay. Could make this a second screen with it's own handle input.
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle(0, (int)Globals.Globals.gameSize.Y / 3, 160, 160), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
+            int menuY = (int)menuPos.Y + 20;
+            for(int i = 0; i < Entries.Count; i++)
+            {
+                if (i == (int)selection)
+                {
+                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY, 32, 32), Color.White);
+                }
+                 if (Entries[i].Enabled)
+                {
+                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.White);
 
+                }
+                else
+                {
+                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.Gray);
+
+                }
+
+                menuY += 20;
+            }
 
             Globals.Globals.spriteBatch.End();
 
         }
 
+
+
+        public override void HandleInput()
+        {
+            base.HandleInput();
+            if (Globals.Input.keyPressed(Keys.Up) || Globals.Input.keyPressed(Keys.W) || Globals.Input.buttonPressed(Buttons.DPadUp, PlayerIndex.One) || Globals.Input.buttonPressed(Buttons.LeftThumbstickUp, PlayerIndex.One))
+            {
+                do
+                {
+                    selection -= 1;
+                    if (selection < 0)
+                    {
+                        selection = (options)Entries.Count - 1;
+                    }
+
+                } while (Entries[(int)selection].Enabled == false);
+
+            }
+
+            if (Globals.Input.keyPressed(Keys.Down) || Globals.Input.keyPressed(Keys.S) || Globals.Input.buttonPressed(Buttons.DPadDown, PlayerIndex.One) || Globals.Input.buttonPressed(Buttons.LeftThumbstickDown, PlayerIndex.One))
+            {
+                do
+                {
+                    selection += 1;
+                    if ((int)selection > (Entries.Count - 1))
+                    {
+                        selection = 0;
+                    }
+
+                } while (Entries[(int)selection].Enabled == false);
+            }
+
+            if (Globals.Input.keyPressed(Keys.Enter) || Globals.Input.buttonPressed(Buttons.A, PlayerIndex.One))
+            {
+                switch (selection)
+                {
+                    case options.ATTACK:
+                        Game1.enemyShip.TakeDamage();//Is there no way for the player to fire?
+                        break;
+                    case options.BAIL:
+                        //Is there no way for the player ship to remove water?
+                        break;
+                    case options.REPAIR:
+                        //Is there no way for the player ship to remove a hole?
+                        break;
+                }
+            }
+
+        }
+
+
+        public void addEntry(String text, bool enabled)
+        {
+            Utilities.MenuEntry entry = new Utilities.MenuEntry();
+            entry.Enabled = enabled;
+            entry.Text = text;
+            Entries.Add(entry);
+        }
+
+        public void updateEntries()
+        {                                
+            Entries.Clear();
+            addEntry("Shoot", true);
+            addEntry("Repair", Game1.playerShip.NumHoles() > 0);
+            addEntry("Bail", Game1.playerShip.WaterTaken() > 0);
+        }
+
     }
+
+
+
 }
