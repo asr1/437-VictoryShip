@@ -14,6 +14,9 @@ namespace DayofVictory.ScreenManager.Screens
 {
     class HUDScreen : BaseScreen
     {
+        private const int WATER_BAIL_AMOUNT = 10; //TODO CHange to something better
+        private const int REPAIR_HOLES_AMOUNT = 1;
+
         private List<Utilities.MenuEntry> Entries = new List<Utilities.MenuEntry>();
         private options selection = options.ATTACK;
         private int triangleY;
@@ -113,13 +116,13 @@ namespace DayofVictory.ScreenManager.Screens
                 switch (selection)
                 {
                     case options.ATTACK:
-                        Game1.enemyShip.TakeDamage();//Is there no way for the player to fire?
+                        Game1.playerShip.FireShot(Game1.enemyShip);
                         break;
                     case options.BAIL:
-                        //Is there no way for the player ship to remove water?
+                        Game1.playerShip.BailWater(WATER_BAIL_AMOUNT);
                         break;
                     case options.REPAIR:
-                        //Is there no way for the player ship to remove a hole?
+                        Game1.playerShip.Repair(REPAIR_HOLES_AMOUNT);
                         break;
                 }
                 Game1.setPlayersTurn(false);

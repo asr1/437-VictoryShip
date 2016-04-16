@@ -5,7 +5,7 @@ namespace DayofVictory
 {
     public class Ship : DrawableGameComponent
     {
-        private const int WATER_PER_HOLE = 1;
+        private const int WATER_PER_HOLE = 5;
 
         public const int MAX_WATER = 100;
 
@@ -29,12 +29,27 @@ namespace DayofVictory
             this.pos = pos;
         }
 
-        public void AddHole()
+        public void AddHole(int numHoles)
         {
-            holes++;
+            holes += numHoles;
         }
 
-        public void TakeDamage()
+        public void FireShot(Ship target)
+        {
+            target.AddHole(1);
+        }
+
+        public void BailWater(int howMuch)
+        {
+            water = MathHelper.Max(0, water - howMuch);
+        }
+
+        public void Repair(int howMany)
+        {
+            holes = MathHelper.Max(0, holes - howMany);
+        }
+
+        public void TakeOnWater()
         {
             water += holes * WATER_PER_HOLE;
         }
