@@ -47,12 +47,12 @@ namespace DayofVictory.ScreenManager.Screens
             base.Draw();
             Globals.Globals.spriteBatch.Begin();
             //Enemy health bar and fill
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle(0, 0, 100, 10), new Rectangle(64, 0, 64, 64), Color.White);
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.enemyShip.WaterTaken() / Ship.MAX_WATER, 10), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle(0, 0, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.enemyShip.WaterTaken() / Ship.MAX_WATER, 30), Color.White);
 
             //Friendly health bar and fill
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-10, 100, 10), new Rectangle(64, 0, 64, 64), Color.White);
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.playerShip.WaterTaken() / Ship.MAX_WATER, 10), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken() / Ship.MAX_WATER, 30), Color.White);
 
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);

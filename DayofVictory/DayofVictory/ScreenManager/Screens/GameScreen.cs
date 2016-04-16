@@ -20,7 +20,7 @@ namespace DayofVictory.ScreenManager.Screens
             //Like, it clearly needs to be on top. But wouldn't it be sufficient
             //To set it on top during the constructor, and not EVERY SINGLE FRAME?
             //ScreenManager.unloadScreen("HUDScreen");
-            ScreenManager.addScreen(new HUDScreen());
+           
         }
     }
 }
