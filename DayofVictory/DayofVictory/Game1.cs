@@ -95,6 +95,11 @@ namespace DayofVictory
             float delta = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
             // TODO: Add your update logic here
+            if (playersTurn)
+            {
+                Globals.Input.Update();
+                screenManager.Update(delta);
+            }
 
             base.Update(gameTime);
             screenManager.Update(delta);
