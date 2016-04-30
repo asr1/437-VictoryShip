@@ -44,7 +44,8 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="AIShip.cs" />
+    <Compile Include="AI\AIShipCalculator.cs" />
+    <Compile Include="AI\AIShip.cs" />
     <Compile Include="Globals\Globals.cs" />
     <Compile Include="Globals\Input.cs" />
     <Compile Include="Globals\Resources\Textures.cs" />

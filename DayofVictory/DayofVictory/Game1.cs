@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using DayofVictory.AI;
+
 namespace DayofVictory
 {
     /// <summary>
@@ -16,7 +18,7 @@ namespace DayofVictory
                              
         //I really wish we didn't do it this way, for what it's worth.
         public static Ship playerShip;
-        public static Ship enemyShip;
+        public static AIShip enemyShip;
         public static AIShipCalculator aiCalculator;
 
         private static bool playersTurn;
@@ -44,9 +46,6 @@ namespace DayofVictory
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
             Globals.Globals.graphics.ApplyChanges();
 
-            //set this to whatever. In this example, opponent can take 25% more water than AI
-            aiCalculator = new AIShipCalculator(Ship.MAX_WATER - 25, Ship.MAX_WATER);
-
             base.Initialize();
         }
 
@@ -62,7 +61,7 @@ namespace DayofVictory
             Globals.Globals.content = Content; //Give global handlers to things we need
 
             playerShip = new Ship(this, null);
-            enemyShip = new Ship(this, null);
+            enemyShip = new AIShip(this, null, playerShip);
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();
@@ -94,11 +93,17 @@ namespace DayofVictory
                 Exit();
             float delta = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            // TODO: Add your update logic here
-            if (playersTurn)
+            // TODO: Add your update logic here            
+            Globals.Input.Update();
+            screenManager.Update(delta);
+
+            if (!playersTurn)
             {
-                Globals.Input.Update();
-                screenManager.Update(delta);
+                playerShip.TakeOnWater();
+                //TODO Check for game over
+                enemyShip.DoMove();
+                enemyShip.TakeOnWater();
+                //TODO Check for game over
             }
 
             base.Update(gameTime);

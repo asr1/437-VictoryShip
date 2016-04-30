@@ -5,11 +5,12 @@ namespace DayofVictory
 {
     public class Ship : DrawableGameComponent
     {
-        private const int WATER_PER_HOLE = 5;
+        public const int WATER_PER_HOLE = 5;
+        public const int WATER_PER_BAIL = 3;
 
         public const int MAX_WATER = 100;
 
-        private Game1 game;
+        protected Game1 game;
 
         private int water;
         private int holes;
