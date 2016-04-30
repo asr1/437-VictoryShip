@@ -100,10 +100,19 @@ namespace DayofVictory
             if (!playersTurn)
             {
                 playerShip.TakeOnWater();
-                //TODO Check for game over
+
+                if (playerShip.WaterTaken() >= Ship.MAX_WATER)
+                {
+                    //TODO Transition to game over
+                }
+
                 enemyShip.DoMove();
                 enemyShip.TakeOnWater();
-                //TODO Check for game over
+
+                if (enemyShip.WaterTaken() >= Ship.MAX_WATER)
+                {
+                    //TODO Transition to game over
+                }
             }
 
             base.Update(gameTime);
