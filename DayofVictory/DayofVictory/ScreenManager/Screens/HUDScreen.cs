@@ -24,6 +24,11 @@ namespace DayofVictory.ScreenManager.Screens
         private static Vector2 menuSize = new Vector2(120, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
+        private static Vector2 moveSize = new Vector2(200, 180);
+        private Vector2 movePos = new Vector2(0, 100);
+        private const int MOVE_OFFSET = 15;
+        private int moveY = 0;
+
         //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
 
 
@@ -31,9 +36,7 @@ namespace DayofVictory.ScreenManager.Screens
         {
             name = "HUDScreen";
             state = ScreenState.Active;
-
-            updateEntries();
-
+            updateEntries();   
         }
 
         public override void Update(float delta)
@@ -47,19 +50,25 @@ namespace DayofVictory.ScreenManager.Screens
             base.Draw();
             Globals.Globals.spriteBatch.Begin();
             //Enemy health bar and fill
+            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, "Holes: " + Game1.enemyShip.NumHoles(), new Vector2(0, 30), Color.Gray);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle(0, 0, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.enemyShip.WaterTaken() / Ship.MAX_WATER, 30), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.enemyShip.WaterTaken(), 30), Color.White);
 
             //Friendly health bar and fill
+            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, "Holes: " + Game1.playerShip.NumHoles(), new Vector2(Globals.Globals.gameSize.X - 120, Globals.Globals.gameSize.Y - 55), Color.Gray);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken() / Ship.MAX_WATER, 30), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken(), 30), Color.White);
 
-
-            //DEBUG
-            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16,  (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(), new Vector2(Globals.Globals.gameSize.X / 2, Globals.Globals.gameSize.Y/2), Color.White);
-           // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(),
-          //END DEBUG
-
+            //Recent moves
+            moveY = 0;
+            foreach (String s in Game1.recentMoves)
+            {
+                Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, s, new Vector2(movePos.X, movePos.Y + moveY), Color.Gray);
+                moveY += MOVE_OFFSET;
+            }             
+            //Recent moves gets an overlay too.
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)movePos.X, (int)movePos.Y, (int)moveSize.X, (int)moveSize.Y), Color.White);
+                                                                                                   
 
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
@@ -68,11 +77,11 @@ namespace DayofVictory.ScreenManager.Screens
             {
                 if (i == (int)selection)
                 {
-                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY, 32, 32), Color.White);
+                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY - 5, 32, 32), Color.Red);
                 }
-                 if (Entries[i].Enabled)
+                if (Entries[i].Enabled)
                 {
-                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.Black);
+                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.Blue);
 
                 }
                 else
@@ -123,17 +132,20 @@ namespace DayofVictory.ScreenManager.Screens
                 {
                     case options.ATTACK:
                         Game1.playerShip.FireShot(Game1.enemyShip);
+                        Game1.recentMoves.Add("You shot the enemy");
                         break;
                     case options.BAIL:
                         Game1.playerShip.BailWater(WATER_BAIL_AMOUNT);
+                        Game1.recentMoves.Add("You bailed water");
                         break;
                     case options.REPAIR:
                         Game1.playerShip.Repair(REPAIR_HOLES_AMOUNT);
+                        Game1.recentMoves.Add("You fixed a hole");
                         break;
                 }
+                Game1.TrimRecentsList();
                 Game1.setPlayersTurn(false);
             }
-
         }
 
 

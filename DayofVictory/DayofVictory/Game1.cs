@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System.Collections.Generic;
+
 using DayofVictory.AI;
 
 namespace DayofVictory
@@ -13,6 +15,8 @@ namespace DayofVictory
     public class Game1 : Game
     {
         public const int GAME_SIZE_X = 1000, GAME_SIZE_Y = 720;
+        public const int MAX_RECENTS = 10; //How many moves do we keep track of?
+
         SpriteBatch spriteBatch;
         private ScreenManager.ScreenManager screenManager;
                              
@@ -36,7 +40,9 @@ namespace DayofVictory
         private Texture2D boom; // boom effect
         private Texture2D explosionCloud; // cloud effect
 
-        private Watch watch; 
+        private Watch watch;
+
+        public static List<string> recentMoves;
 
         public Game1()
         {
@@ -64,9 +70,13 @@ namespace DayofVictory
             Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
             Globals.Globals.graphics.PreferredBackBufferWidth = (int)Globals.Globals.gameSize.X;
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
+            Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
             vicky.setUnderAttack(watch);
             setEnemyUnderAttack();
+
+            recentMoves = new List<string>();
+
             base.Initialize();
         }
 
@@ -168,10 +178,11 @@ namespace DayofVictory
                 {
                     //TODO Transition to game over
                 }
+
+                playersTurn = true;
             }
 
             base.Update(gameTime);
-            screenManager.Update(delta);
         }
 
         /// <summary>
@@ -218,6 +229,17 @@ namespace DayofVictory
         public static void togglePlayersTurn()
         {
             playersTurn = !playersTurn;
+        }
+
+        public static void TrimRecentsList()
+        {
+            if (recentMoves.Count > MAX_RECENTS)
+            {
+                while(recentMoves.Count > MAX_RECENTS)
+                {
+                    recentMoves.RemoveAt(0);
+                }
+            }
         }
     }
 }
