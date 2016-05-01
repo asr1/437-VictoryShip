@@ -24,7 +24,7 @@ namespace DayofVictory.ScreenManager.Screens
         private static Vector2 menuSize = new Vector2(100, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
-        private static Vector2 moveSize = new Vector2(100, 100);
+        private static Vector2 moveSize = new Vector2(200, 180);
         private Vector2 movePos = new Vector2(0, 100);
         private const int MOVE_OFFSET = 15;
         private int moveY = 0;
@@ -36,9 +36,7 @@ namespace DayofVictory.ScreenManager.Screens
         {
             name = "HUDScreen";
             state = ScreenState.Active;
-
-            updateEntries();
-            
+            updateEntries();   
         }
 
         public override void Update(float delta)
@@ -70,7 +68,6 @@ namespace DayofVictory.ScreenManager.Screens
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)movePos.X, (int)movePos.Y, (int)moveSize.X, (int)moveSize.Y), Color.White);
                                                                                                    
 
-
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
             int menuY = (int)menuPos.Y + 20;
@@ -78,11 +75,11 @@ namespace DayofVictory.ScreenManager.Screens
             {
                 if (i == (int)selection)
                 {
-                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY, 32, 32), Color.White);
+                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY - 5, 32, 32), Color.Red);
                 }
-                 if (Entries[i].Enabled)
+                if (Entries[i].Enabled)
                 {
-                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.White);
+                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.Blue);
 
                 }
                 else
