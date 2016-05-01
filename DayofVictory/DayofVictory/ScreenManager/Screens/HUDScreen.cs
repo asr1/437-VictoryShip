@@ -21,7 +21,7 @@ namespace DayofVictory.ScreenManager.Screens
         private options selection = options.ATTACK;
         private int triangleY;
 
-        private static Vector2 menuSize = new Vector2(100, 100);
+        private static Vector2 menuSize = new Vector2(120, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
         //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
@@ -72,7 +72,7 @@ namespace DayofVictory.ScreenManager.Screens
                 }
                  if (Entries[i].Enabled)
                 {
-                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.White);
+                    Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, Entries[i].Text, new Vector2(menuPos.X + 32, menuY), Color.Black);
 
                 }
                 else
