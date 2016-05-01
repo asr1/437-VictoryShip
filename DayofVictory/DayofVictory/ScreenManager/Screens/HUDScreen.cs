@@ -56,7 +56,7 @@ namespace DayofVictory.ScreenManager.Screens
 
 
             //DEBUG
-            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16,  (Game1.playerShip.WaterTaken()).ToString(), new Vector2(Globals.Globals.gameSize.X / 2, Globals.Globals.gameSize.Y/2), Color.White);
+           // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16,  (Game1.playerShip.WaterTaken()).ToString(), new Vector2(Globals.Globals.gameSize.X / 2, Globals.Globals.gameSize.Y/2), Color.White);
            // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(),
           //END DEBUG
 
