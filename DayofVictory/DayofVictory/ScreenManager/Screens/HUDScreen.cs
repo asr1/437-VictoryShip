@@ -88,24 +88,23 @@ namespace DayofVictory.ScreenManager.Screens
             {
                 do
                 {
-                    selection -= 1;
-                    if (selection < 0)
+                    selection++;
+                    if ((int)selection > (Entries.Count - 1))
                     {
-                        selection = (options)Entries.Count - 1;
+                        selection = 0;
                     }
 
                 } while (Entries[(int)selection].Enabled == false);
-
             }
 
             if (Globals.Input.keyPressed(Keys.Down) || Globals.Input.keyPressed(Keys.S) || Globals.Input.buttonPressed(Buttons.DPadDown, PlayerIndex.One) || Globals.Input.buttonPressed(Buttons.LeftThumbstickDown, PlayerIndex.One))
             {
                 do
                 {
-                    selection += 1;
-                    if ((int)selection > (Entries.Count - 1))
+                    selection--;
+                    if (selection < 0)
                     {
-                        selection = 0;
+                        selection = (options)Entries.Count - 1;
                     }
 
                 } while (Entries[(int)selection].Enabled == false);
