@@ -23,9 +23,8 @@ namespace DayofVictory
 
         private static bool playersTurn;
 
-        private bool vickyUnderAttack; // used to change Vicky's expressions -- if under attack Vicky looks scared
+        private Vicky vicky;
         private bool enemyUnderAttack; // used to display boom icon on enemy
-        private int vickyHurtIconInitialized;
         private int enemyHurtIconInitialized;
         private Texture2D gameBackground;
         private Texture2D vickyHappy; // Vicky being fine img
@@ -55,11 +54,10 @@ namespace DayofVictory
         {
             // TODO: Add your initialization logic here
             playersTurn = true;
-            vickyUnderAttack = false;
             enemyUnderAttack = false;
+            vicky = new Vicky();
 
             watch = new Watch();
-            vickyHurtIconInitialized = 0;
             enemyHurtIconInitialized = 0;
 
             //For what it's worth, I also object to these namespaces.
@@ -67,27 +65,9 @@ namespace DayofVictory
             Globals.Globals.graphics.PreferredBackBufferWidth = (int)Globals.Globals.gameSize.X;
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
             Globals.Globals.graphics.ApplyChanges();
-            setVickyUnderAttack();
+            vicky.setUnderAttack(watch);
             setEnemyUnderAttack();
             base.Initialize();
-        }
-
-        // Vicky is currently under attack 
-        // Make its icon flicker between being hurt and being fine
-        public void setVickyUnderAttack()
-        {
-            vickyUnderAttack = true;
-            vickyHurtIconInitialized = watch.getEllapsedSec();
-        }
-
-        // Changes Vicky's display icon briefly to a hurt Vicky 
-        // Icon changes back after 1 sec
-        public void vickyHurtIconCheck()
-        {
-            if (vickyUnderAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 1)
-            {
-                this.vickyUnderAttack = false;
-            }
         }
 
         // Displays a boom icon briefly over the neemy ship
@@ -102,7 +82,7 @@ namespace DayofVictory
         // Icon changes back after 1 sec
         public void enemyHurtIconCheck()
         {
-            if (enemyUnderAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 1)
+            if (enemyUnderAttack && (watch.getEllapsedSec() - enemyHurtIconInitialized) >= 1)
             {
                 this.enemyUnderAttack = false;
             }
@@ -167,11 +147,13 @@ namespace DayofVictory
             Globals.Input.Update();
             screenManager.Update(delta);
 
-            vickyHurtIconCheck();
+            vicky.hurtIconCheck(watch);
             enemyHurtIconCheck();
 
             if (!playersTurn)
             {
+                vicky.resetStates();
+
                 playerShip.TakeOnWater();
 
                 if (playerShip.WaterTaken() >= Ship.MAX_WATER)
@@ -203,13 +185,19 @@ namespace DayofVictory
             spriteBatch.Begin();
                 spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
                 spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
+                
                 if (enemyUnderAttack)
                 {
                     spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
                     spriteBatch.Draw(explosionCloud, new Rectangle(500, 310, 80, 90), Color.White);
                 }
-                if (!vickyUnderAttack) spriteBatch.Draw(vickyShoot, new Rectangle(350, 600, 100, 100), Color.White);
-                else spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
+                
+                if (vicky.isUnderAttack()) spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
+                else if (vicky.isShooting()) spriteBatch.Draw(vickyShoot, new Rectangle(350, 600, 100, 100), Color.White);
+                else if (vicky.isRepairing()) spriteBatch.Draw(vickyRepair, new Rectangle(350, 600, 100, 100), Color.White);
+                else if (vicky.isBailing()) spriteBatch.Draw(vickyBail, new Rectangle(350, 600, 100, 100), Color.White);
+                else spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
+
             spriteBatch.End();
 
             base.Draw(gameTime);
