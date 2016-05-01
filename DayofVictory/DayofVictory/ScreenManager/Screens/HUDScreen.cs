@@ -24,6 +24,11 @@ namespace DayofVictory.ScreenManager.Screens
         private static Vector2 menuSize = new Vector2(100, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
+        private static Vector2 moveSize = new Vector2(100, 100);
+        private Vector2 movePos = new Vector2(0, 100);
+        private const int MOVE_OFFSET = 15;
+        private int moveY = 0;
+
         //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
 
 
@@ -54,11 +59,12 @@ namespace DayofVictory.ScreenManager.Screens
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken(), 30), Color.White);
 
-
-            //DEBUG
-           // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16,  (Game1.playerShip.WaterTaken()).ToString(), new Vector2(Globals.Globals.gameSize.X / 2, Globals.Globals.gameSize.Y/2), Color.White);
-           // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(),
-          //END DEBUG
+            moveY = 0;
+            foreach (String s in Game1.recentMoves)
+            {
+                Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, s, new Vector2(movePos.X, movePos.Y + moveY), Color.Gray);
+                moveY += MOVE_OFFSET;
+            }                                                                                                                                        
 
 
             //Overlay. Could make this a second screen with it's own handle input.
