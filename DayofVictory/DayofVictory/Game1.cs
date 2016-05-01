@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 using DayofVictory.AI;
+using Microsoft.Xna.Framework.Media;
 
 namespace DayofVictory
 {
@@ -37,8 +38,8 @@ namespace DayofVictory
         private Texture2D vickyBail; // Vicky baling icon
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
+        private Song gameMusic; 
         private Texture2D explosionCloud; // cloud effect
-
         private Watch watch;
 
         public static List<string> recentMoves;
@@ -100,6 +101,8 @@ namespace DayofVictory
             vickyBail = Content.Load<Texture2D>("images/VickyBailing");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
             boom = Content.Load<Texture2D>("images/boom");
+            gameMusic = Content.Load<Song>("music/battleMusic");
+            MediaPlayer.Play(gameMusic);
             explosionCloud = Content.Load<Texture2D>("images/explosionCloud");
 
             // TODO: call all resource.load() methods
