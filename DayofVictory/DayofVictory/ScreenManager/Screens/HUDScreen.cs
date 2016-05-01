@@ -21,8 +21,8 @@ namespace DayofVictory.ScreenManager.Screens
         private options selection = options.ATTACK;
         private int triangleY;
 
-        private Vector2 menuSize = new Vector2(250, 160);
-        private Vector2 menuPos = new Vector2(0, Globals.Globals.gameSize.Y / 3);
+        private static Vector2 menuSize = new Vector2(100, 100);
+        private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
         //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
 
@@ -53,6 +53,13 @@ namespace DayofVictory.ScreenManager.Screens
             //Friendly health bar and fill
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken() / Ship.MAX_WATER, 30), Color.White);
+
+
+            //DEBUG
+            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16,  (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(), new Vector2(Globals.Globals.gameSize.X / 2, Globals.Globals.gameSize.Y/2), Color.White);
+           // Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, (Game1.playerShip.WaterTaken() / Ship.MAX_WATER).ToString(),
+          //END DEBUG
+
 
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
