@@ -131,13 +131,12 @@ namespace DayofVictory.ScreenManager.Screens
                         break;
                     case options.REPAIR:
                         Game1.playerShip.Repair(REPAIR_HOLES_AMOUNT);
-                        Game1.recentMoves.Add("You repaired a hole");
+                        Game1.recentMoves.Add("You fixed a hole");
                         break;
                 }
-                
+                Game1.TrimRecentsList();
                 Game1.setPlayersTurn(false);
             }
-
         }
 
 

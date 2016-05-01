@@ -21,14 +21,18 @@ namespace DayofVictory.AI
             {
                 case AIMove.FIRE:
                     FireShot(opponent);
+                    Game1.recentMoves.Add("AI fired a shot");
                     break;
                 case AIMove.BOARD:
                     Repair(1);
+                    Game1.recentMoves.Add("AI fixed a hole");
                     break;
                 case AIMove.BUCKET:
                     BailWater(Ship.WATER_PER_BAIL);
+                    Game1.recentMoves.Add("AI bailed water");
                     break;
             }
+            Game1.TrimRecentsList();
         }
     }
 }

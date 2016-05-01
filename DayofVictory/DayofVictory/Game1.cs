@@ -15,6 +15,8 @@ namespace DayofVictory
     public class Game1 : Game
     {
         public const int GAME_SIZE_X = 1000, GAME_SIZE_Y = 720;
+        public const int MAX_RECENTS = 10; //How many moves do we keep track of?
+
         SpriteBatch spriteBatch;
         private ScreenManager.ScreenManager screenManager;
                              
@@ -228,6 +230,17 @@ namespace DayofVictory
         public static void togglePlayersTurn()
         {
             playersTurn = !playersTurn;
+        }
+
+        public static void TrimRecentsList()
+        {
+            if (recentMoves.Count > MAX_RECENTS)
+            {
+                while(recentMoves.Count > MAX_RECENTS)
+                {
+                    recentMoves.RemoveAt(0);
+                }
+            }
         }
     }
 }
