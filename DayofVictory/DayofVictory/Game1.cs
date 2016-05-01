@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
+using System.Collections.Generic;
+
 using DayofVictory.AI;
 
 namespace DayofVictory
@@ -33,7 +35,9 @@ namespace DayofVictory
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
         
-        private Watch watch; 
+        private Watch watch;
+
+        public static List<string> recentMoves;
 
         public Game1()
         {
@@ -66,6 +70,9 @@ namespace DayofVictory
             Globals.Globals.graphics.ApplyChanges();
             setVickyUnderAttack();
             setEnemyUnderAttack();
+
+            recentMoves = new List<string>();
+
             base.Initialize();
         }
 

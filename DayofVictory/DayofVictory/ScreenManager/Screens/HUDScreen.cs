@@ -123,14 +123,18 @@ namespace DayofVictory.ScreenManager.Screens
                 {
                     case options.ATTACK:
                         Game1.playerShip.FireShot(Game1.enemyShip);
+                        Game1.recentMoves.Add("You shot the enemy");
                         break;
                     case options.BAIL:
                         Game1.playerShip.BailWater(WATER_BAIL_AMOUNT);
+                        Game1.recentMoves.Add("You bailed water");
                         break;
                     case options.REPAIR:
                         Game1.playerShip.Repair(REPAIR_HOLES_AMOUNT);
+                        Game1.recentMoves.Add("You repaired a hole");
                         break;
                 }
+                
                 Game1.setPlayersTurn(false);
             }
 
