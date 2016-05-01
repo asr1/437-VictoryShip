@@ -15,9 +15,6 @@ namespace DayofVictory
         private int water;
         private int holes;
 
-        Watch watch = new Watch();
-        Vicky vicky = new Vicky();
-
         private Texture2D texture;
         private Vector2 pos;
 
@@ -40,19 +37,16 @@ namespace DayofVictory
         public void FireShot(Ship target)
         {
             target.AddHole(1);
-            vicky.setShooter();
         }
 
         public void BailWater(int howMuch)
         {
             water = MathHelper.Max(0, water - howMuch);
-            vicky.setBailing();
         }
 
         public void Repair(int howMany)
         {
             holes = MathHelper.Max(0, holes - howMany);
-            vicky.setRepairing();
         }
 
         public void TakeOnWater()

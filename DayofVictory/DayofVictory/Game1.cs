@@ -71,8 +71,6 @@ namespace DayofVictory
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
             Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
-            vicky.setUnderAttack(watch);
-            enemy.setUnderAttack(watch);
 
             recentMoves = new List<string>();
 

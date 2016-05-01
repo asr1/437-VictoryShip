@@ -21,6 +21,10 @@ namespace DayofVictory.ScreenManager.Screens
         private options selection = options.ATTACK;
         private int triangleY;
 
+        private Vicky vicky = new Vicky();
+        private Enemy enemy = new Enemy();
+        private Watch watch = new Watch();
+
         private static Vector2 menuSize = new Vector2(120, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
@@ -73,10 +77,16 @@ namespace DayofVictory.ScreenManager.Screens
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
             int menuY = (int)menuPos.Y + 20;
+
             for(int i = 0; i < Entries.Count; i++)
             {
                 if (i == (int)selection)
                 {
+                    vicky.resetStates();
+                    if ((int)selection == 0) vicky.setShooter();
+                    else if ((int)selection == 1) vicky.setRepairing();
+                    else if ((int)selection == 2) vicky.setBailing();
+
                     Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY - 5, 32, 32), Color.Red);
                 }
                 if (Entries[i].Enabled)
@@ -133,6 +143,7 @@ namespace DayofVictory.ScreenManager.Screens
                     case options.ATTACK:
                         Game1.playerShip.FireShot(Game1.enemyShip);
                         Game1.recentMoves.Add("You shot the enemy");
+                        enemy.setUnderAttack(watch);
                         break;
                     case options.BAIL:
                         Game1.playerShip.BailWater(WATER_BAIL_AMOUNT);
