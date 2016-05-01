@@ -61,12 +61,16 @@ namespace DayofVictory.ScreenManager.Screens
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken(), 30), Color.White);
 
+            //Recent moves
             moveY = 0;
             foreach (String s in Game1.recentMoves)
             {
                 Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, s, new Vector2(movePos.X, movePos.Y + moveY), Color.Gray);
                 moveY += MOVE_OFFSET;
-            }                                                                                                                                        
+            }             
+            //Recent moves gets an overlay too.
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)movePos.X, (int)movePos.Y, (int)moveSize.X, (int)moveSize.Y), Color.White);
+                                                                                                   
 
 
             //Overlay. Could make this a second screen with it's own handle input.
