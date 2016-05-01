@@ -28,6 +28,7 @@ namespace DayofVictory
         private Texture2D vickyHappy; // Vicky being fine img
         private Texture2D vickyHurt; // Vicky hurt img
         private Texture2D enemyShipImg; // enemy ship img
+        private Texture2D boom; // boom effect
 
         public Game1()
         {
@@ -73,6 +74,7 @@ namespace DayofVictory
             vickyHappy = Content.Load<Texture2D>("images/VickyHappy");
             vickyHurt = Content.Load<Texture2D>("images/VickyHurt");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
+            boom = Content.Load<Texture2D>("images/boom");
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();
@@ -141,6 +143,7 @@ namespace DayofVictory
             spriteBatch.Begin();
                 spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
                 spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
+                spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
                 if (!underAttack) spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
                 else spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
             spriteBatch.End();
