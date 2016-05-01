@@ -19,7 +19,6 @@ namespace DayofVictory
         Vicky vicky = new Vicky();
 
         private Texture2D texture;
-
         private Vector2 pos;
 
         public Ship(Game theGame, Texture2D texture) : base(theGame)

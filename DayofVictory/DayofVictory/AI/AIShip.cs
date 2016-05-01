@@ -6,6 +6,8 @@ namespace DayofVictory.AI
     {
         private AIShipCalculator calc;
         private Ship opponent;
+        Vicky vicky = new Vicky();
+        Watch watch = new Watch();
 
         public AIShip(Game1 theGame, Texture2D texture, Ship opponent)
             : base(theGame, texture)
@@ -21,6 +23,7 @@ namespace DayofVictory.AI
             {
                 case AIMove.FIRE:
                     FireShot(opponent);
+                    vicky.setUnderAttack(watch);
                     Game1.recentMoves.Add("AI fired a shot");
                     break;
                 case AIMove.BOARD:

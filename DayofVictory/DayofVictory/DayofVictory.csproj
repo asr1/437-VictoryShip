@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AI\AIShipCalculator.cs" />
     <Compile Include="AI\AIShip.cs" />
+    <Compile Include="Globals\Enemy.cs" />
     <Compile Include="Globals\Globals.cs" />
     <Compile Include="Globals\Input.cs" />
     <Compile Include="Globals\Resources\Textures.cs" />

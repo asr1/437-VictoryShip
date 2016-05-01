@@ -28,8 +28,7 @@ namespace DayofVictory
         private static bool playersTurn;
 
         private Vicky vicky;
-        private bool enemyUnderAttack; // used to display boom icon on enemy
-        private int enemyHurtIconInitialized;
+        private Enemy enemy;
         private Texture2D gameBackground;
         private Texture2D vickyHappy; // Vicky being fine img
         private Texture2D vickyHurt; // Vicky hurt img
@@ -60,11 +59,10 @@ namespace DayofVictory
         {
             // TODO: Add your initialization logic here
             playersTurn = true;
-            enemyUnderAttack = false;
             vicky = new Vicky();
+            enemy = new Enemy();
 
             watch = new Watch();
-            enemyHurtIconInitialized = 0;
 
             //For what it's worth, I also object to these namespaces.
             Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
@@ -73,29 +71,11 @@ namespace DayofVictory
             Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
             vicky.setUnderAttack(watch);
-            setEnemyUnderAttack();
+            enemy.setUnderAttack(watch);
 
             recentMoves = new List<string>();
 
             base.Initialize();
-        }
-
-        // Displays a boom icon briefly over the neemy ship
-        // Icon dissapears after 1 sec
-        public void setEnemyUnderAttack()
-        {
-            enemyUnderAttack = true;
-            enemyHurtIconInitialized = watch.getEllapsedSec();
-        }
-
-        // Displays enemy's explosion icon briefly
-        // Icon changes back after 1 sec
-        public void enemyHurtIconCheck()
-        {
-            if (enemyUnderAttack && (watch.getEllapsedSec() - enemyHurtIconInitialized) >= 1)
-            {
-                this.enemyUnderAttack = false;
-            }
         }
 
         /// <summary>
@@ -158,7 +138,7 @@ namespace DayofVictory
             screenManager.Update(delta);
 
             vicky.hurtIconCheck(watch);
-            enemyHurtIconCheck();
+            enemy.hurtIconCheck(watch);
 
             if (!playersTurn)
             {
@@ -197,7 +177,7 @@ namespace DayofVictory
                 spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
                 spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
                 
-                if (enemyUnderAttack)
+                if (enemy.isUnderAttack())
                 {
                     spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
                     spriteBatch.Draw(explosionCloud, new Rectangle(500, 310, 80, 90), Color.White);
