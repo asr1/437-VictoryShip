@@ -1,4 +1,4 @@
-﻿
+﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
@@ -12,7 +12,7 @@ namespace DayofVictory
     /// </summary>
     public class Game1 : Game
     {
-        public const int GAME_SIZE_X = 800, GAME_SIZE_Y = 400;
+        public const int GAME_SIZE_X = 1000, GAME_SIZE_Y = 720;
         SpriteBatch spriteBatch;
         private ScreenManager.ScreenManager screenManager;
                              
@@ -22,6 +22,12 @@ namespace DayofVictory
         public static AIShipCalculator aiCalculator;
 
         private static bool playersTurn;
+
+        private bool underAttack = false; // used to change Vicky's expressions -- if under attack icky looks scared
+        private Texture2D gameBackground;
+        private Texture2D vickyHappy; // Vicky being fine img
+        private Texture2D vickyHurt; // Vicky hurt img
+        private Texture2D enemyShipImg; // enemy ship img
 
         public Game1()
         {
@@ -63,6 +69,11 @@ namespace DayofVictory
             playerShip = new Ship(this, null);
             enemyShip = new AIShip(this, null, playerShip);
 
+            gameBackground = Content.Load<Texture2D>("images/background");
+            vickyHappy = Content.Load<Texture2D>("images/VickyHappy");
+            vickyHurt = Content.Load<Texture2D>("images/VickyHurt");
+            enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
+
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();
            Globals.Resources.Textures.load();
@@ -79,7 +90,7 @@ namespace DayofVictory
         /// </summary>
         protected override void UnloadContent()
         {
-            // TODO: Unload any non ContentManager content here
+            Content.Unload();
         }
 
         /// <summary>
@@ -127,7 +138,12 @@ namespace DayofVictory
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            // TODO: Add your drawing code here
+            spriteBatch.Begin();
+                spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
+                spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
+                if (!underAttack) spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
+                else spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
+            spriteBatch.End();
 
             base.Draw(gameTime);
             screenManager.Draw();
