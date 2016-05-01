@@ -127,3 +127,39 @@
 /processorParam:TextureFormat=Color
 /build:images/boom.png
 
+#begin sounds/bucketSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/bucketSound.wav
+
+#begin sounds/boardSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/boardSound.wav
+
+#begin sounds/playerCannonSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds/playerCannonSound.wav
+
+#begin sounds\cannonSound2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds\cannonSound2.wav
+
+#begin sounds\vickyBarkSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds\vickyBarkSound.wav
+
+#begin sounds\vickyPanicSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sounds\vickyPanicSound.wav
+

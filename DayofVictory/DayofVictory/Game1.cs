@@ -23,12 +23,17 @@ namespace DayofVictory
 
         private static bool playersTurn;
 
-        private bool underAttack = false; // used to change Vicky's expressions -- if under attack icky looks scared
+        private bool vickyUnderAttack; // used to change Vicky's expressions -- if under attack Vicky looks scared
+        private bool enemyUnderAttack; // used to display boom icon on enemy
+        private int vickyHurtIconInitialized;
+        private int enemyHurtIconInitialized;
         private Texture2D gameBackground;
         private Texture2D vickyHappy; // Vicky being fine img
         private Texture2D vickyHurt; // Vicky hurt img
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
+        
+        private Watch watch; 
 
         public Game1()
         {
@@ -46,6 +51,12 @@ namespace DayofVictory
         {
             // TODO: Add your initialization logic here
             playersTurn = true;
+            vickyUnderAttack = false;
+            enemyUnderAttack = false;
+
+            watch = new Watch();
+            vickyHurtIconInitialized = 0;
+            enemyHurtIconInitialized = 0;
 
             //For what it's worth, I also object to these namespaces.
             Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
@@ -53,8 +64,45 @@ namespace DayofVictory
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
             Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
-
+            setVickyUnderAttack();
+            setEnemyUnderAttack();
             base.Initialize();
+        }
+
+        // Vicky is currently under attack 
+        // Make its icon flicker between being hurt and being fine
+        public void setVickyUnderAttack()
+        {
+            vickyUnderAttack = true;
+            vickyHurtIconInitialized = watch.getEllapsedSec();
+        }
+
+        // Changes Vicky's display icon briefly to a hurt Vicky 
+        // Icon changes back after 1 sec
+        public void vickyHurtIconCheck()
+        {
+            if (vickyUnderAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 1)
+            {
+                this.vickyUnderAttack = false;
+            }
+        }
+
+        // Displays a boom icon briefly over the neemy ship
+        // Icon dissapears after 1 sec
+        public void setEnemyUnderAttack()
+        {
+            enemyUnderAttack = true;
+            enemyHurtIconInitialized = watch.getEllapsedSec();
+        }
+
+        // Displays enemy's explosion icon briefly
+        // Icon changes back after 1 sec
+        public void enemyHurtIconCheck()
+        {
+            if (enemyUnderAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 1)
+            {
+                this.enemyUnderAttack = false;
+            }
         }
 
         /// <summary>
@@ -107,9 +155,13 @@ namespace DayofVictory
                 Exit();
             float delta = (float)gameTime.ElapsedGameTime.TotalMilliseconds;
 
-            // TODO: Add your update logic here            
+            watch.updTime(gameTime);
+
             Globals.Input.Update();
             screenManager.Update(delta);
+
+            vickyHurtIconCheck();
+            enemyHurtIconCheck();
 
             if (!playersTurn)
             {
@@ -146,8 +198,8 @@ namespace DayofVictory
             spriteBatch.Begin();
                 spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
                 spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
-                spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
-                if (!underAttack) spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
+                if (enemyUnderAttack) spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
+                if (!vickyUnderAttack) spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
                 else spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
             spriteBatch.End();
 
