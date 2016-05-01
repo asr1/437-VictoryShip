@@ -193,3 +193,39 @@
 /processorParam:Quality=Best
 /build:music/gameOverMusic.mp3
 
+#begin sound/cannon2.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/cannon2.wav
+
+#begin sound/cannonHit.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/cannonHit.mp3
+
+#begin sound/battleMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:sound/battleMusic.mp3
+
+#begin sound/boardSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/boardSound.wav
+
+#begin sound/bucketSound.wav
+/importer:WavImporter
+/processor:SoundEffectProcessor
+/processorParam:Quality=Best
+/build:sound/bucketSound.wav
+
+#begin music/battleMusic.mp3
+/importer:Mp3Importer
+/processor:SongProcessor
+/processorParam:Quality=Best
+/build:music/battleMusic.mp3
+
