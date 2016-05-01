@@ -33,7 +33,7 @@ namespace DayofVictory.ScreenManager.Screens
             state = ScreenState.Active;
 
             updateEntries();
-
+            
         }
 
         public override void Update(float delta)
