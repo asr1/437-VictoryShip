@@ -51,6 +51,7 @@ namespace DayofVictory
             Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
             Globals.Globals.graphics.PreferredBackBufferWidth = (int)Globals.Globals.gameSize.X;
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
+            Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
 
             base.Initialize();
@@ -126,6 +127,8 @@ namespace DayofVictory
                 {
                     //TODO Transition to game over
                 }
+
+                playersTurn = true;
             }
 
             base.Update(gameTime);
