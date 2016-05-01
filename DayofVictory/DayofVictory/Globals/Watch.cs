@@ -10,16 +10,16 @@ namespace DayofVictory
     class Watch
     {
         // Vars for our timer
-        private float timer;
-        private float timerS;
-        private float timerM;
-        private float timerH;
-        private int sec;
-        private int min;
-        private int hour;
-        private string secS;
-        private string minS;
-        private string hourS;
+        private static float timer;
+        private static float timerS;
+        private static float timerM;
+        private static float timerH;
+        private static int sec;
+        private static int min;
+        private static int hour;
+        private static string secS;
+        private static string minS;
+        private static string hourS;
 
         // Update out game timer
         public void updTime(GameTime gameTime)

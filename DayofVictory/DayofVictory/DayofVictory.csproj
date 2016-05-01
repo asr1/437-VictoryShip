@@ -49,6 +49,7 @@
     <Compile Include="Globals\Globals.cs" />
     <Compile Include="Globals\Input.cs" />
     <Compile Include="Globals\Resources\Textures.cs" />
+    <Compile Include="Globals\Vicky.cs" />
     <Compile Include="Globals\Watch.cs" />
     <Compile Include="ScreenManager\Screens\GameOverScreen.cs" />
     <Compile Include="ScreenManager\Screens\GameScreen.cs" />

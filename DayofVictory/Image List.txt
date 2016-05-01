@@ -1,0 +1,12 @@
+explosions:
+http://demo.web3designs.com/css3-clouds.htm
+http://65.media.tumblr.com/19b28f23bd568d07f2d4473dbe98a8b6/tumblr_ml1nr8NdrB1s5jjtzo1_500.png
+
+gun:
+https://thumb9.shutterstock.com/thumb_large/843817/843817,1313538065,12/stock-vector-antique-musket-82942993.jpg
+
+bucket: 
+http://www.veryicon.com/icon/png/Object/Minecraft/Bucket%20Water.png
+
+wrench: 
+https://pixabay.com/p-33816/?no_redirect

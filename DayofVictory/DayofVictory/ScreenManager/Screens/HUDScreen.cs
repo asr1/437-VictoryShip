@@ -21,7 +21,7 @@ namespace DayofVictory.ScreenManager.Screens
         private options selection = options.ATTACK;
         private int triangleY;
 
-        private static Vector2 menuSize = new Vector2(100, 100);
+        private static Vector2 menuSize = new Vector2(120, 100);
         private Vector2 menuPos = new Vector2(Globals.Globals.gameSize.X/2, Globals.Globals.gameSize.Y - menuSize.Y);
 
         private static Vector2 moveSize = new Vector2(200, 180);
