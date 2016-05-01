@@ -50,10 +50,12 @@ namespace DayofVictory.ScreenManager.Screens
             base.Draw();
             Globals.Globals.spriteBatch.Begin();
             //Enemy health bar and fill
+            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, "Holes: " + Game1.enemyShip.NumHoles(), new Vector2(0, 30), Color.Gray);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle(0, 0, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle(0, 0, Game1.enemyShip.WaterTaken(), 30), Color.White);
 
             //Friendly health bar and fill
+            Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, "Holes: " + Game1.playerShip.NumHoles(), new Vector2(Globals.Globals.gameSize.X - 120, Globals.Globals.gameSize.Y - 55), Color.Gray);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.selectbar, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y-30, 100, 30), new Rectangle(64, 0, 64, 64), Color.White);
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.water, new Rectangle((int)Globals.Globals.gameSize.X - 120, (int)Globals.Globals.gameSize.Y - 30, Game1.playerShip.WaterTaken(), 30), Color.White);
 

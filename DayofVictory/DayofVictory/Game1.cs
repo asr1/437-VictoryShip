@@ -193,7 +193,6 @@ namespace DayofVictory
             }
 
             base.Update(gameTime);
-            screenManager.Update(delta);
         }
 
         /// <summary>
