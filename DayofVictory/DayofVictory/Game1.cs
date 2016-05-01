@@ -30,6 +30,9 @@ namespace DayofVictory
         private Texture2D gameBackground;
         private Texture2D vickyHappy; // Vicky being fine img
         private Texture2D vickyHurt; // Vicky hurt img
+        private Texture2D vickyShoot; // Vicky shooting icon
+        private Texture2D vickyRepair; // Vicky repairing icon
+        private Texture2D vickyBail; // Vicky baling icon
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
         private Texture2D explosionCloud; // cloud effect
@@ -122,6 +125,9 @@ namespace DayofVictory
             gameBackground = Content.Load<Texture2D>("images/background");
             vickyHappy = Content.Load<Texture2D>("images/VickyHappy");
             vickyHurt = Content.Load<Texture2D>("images/VickyHurt");
+            vickyShoot = Content.Load<Texture2D>("images/VickyShooting");
+            vickyRepair = Content.Load<Texture2D>("images/VickyRepair");
+            vickyBail = Content.Load<Texture2D>("images/VickyBailing");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
             boom = Content.Load<Texture2D>("images/boom");
             explosionCloud = Content.Load<Texture2D>("images/explosionCloud");
@@ -202,7 +208,7 @@ namespace DayofVictory
                     spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
                     spriteBatch.Draw(explosionCloud, new Rectangle(500, 310, 80, 90), Color.White);
                 }
-                if (!vickyUnderAttack) spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
+                if (!vickyUnderAttack) spriteBatch.Draw(vickyShoot, new Rectangle(350, 600, 100, 100), Color.White);
                 else spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
             spriteBatch.End();
 
