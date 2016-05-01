@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 using DayofVictory.AI;
+using Microsoft.Xna.Framework.Media;
 
 namespace DayofVictory
 {
@@ -36,6 +37,7 @@ namespace DayofVictory
         private Texture2D vickyHurt; // Vicky hurt img
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
+        private Song gameMusic; 
         
         private Watch watch;
 
@@ -133,6 +135,8 @@ namespace DayofVictory
             vickyHurt = Content.Load<Texture2D>("images/VickyHurt");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
             boom = Content.Load<Texture2D>("images/boom");
+            gameMusic = Content.Load<Song>("music/battleMusic");
+            MediaPlayer.Play(gameMusic);
 
             // TODO: call all resource.load() methods
            Globals.Resources.Fonts.load();

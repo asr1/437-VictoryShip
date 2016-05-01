@@ -50,6 +50,7 @@
     <Compile Include="Globals\Input.cs" />
     <Compile Include="Globals\Resources\Textures.cs" />
     <Compile Include="Globals\Watch.cs" />
+    <Compile Include="ScreenManager\Screens\GameOverScreen.cs" />
     <Compile Include="ScreenManager\Screens\GameScreen.cs" />
     <Compile Include="ScreenManager\Screens\HUDScreen.cs" />
     <Compile Include="Ship.cs" />
