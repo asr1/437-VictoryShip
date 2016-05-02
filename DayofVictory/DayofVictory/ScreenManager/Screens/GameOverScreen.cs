@@ -31,7 +31,8 @@ namespace DayofVictory.ScreenManager.Screens
             {
                 ScreenManager.unloadScreen(name);
                 ScreenManager.addScreen(new GameScreen());
-                MediaPlayer.Stop();
+
+                Game1.Reset();
             }
             base.Update(delta);
         }

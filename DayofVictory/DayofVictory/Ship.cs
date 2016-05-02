@@ -73,5 +73,11 @@ namespace DayofVictory
         {
             //TODO SpriteBatch.Draw it
         }
+
+        public void Reset()
+        {
+            water = 0;
+            holes = 0;
+        }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
 
 using DayofVictory.AI;
+using System.Threading;
 using Microsoft.Xna.Framework.Media;
 
 namespace DayofVictory
@@ -162,7 +163,7 @@ namespace DayofVictory
                     ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameOverScreen());
                 }
 
-                playersTurn = true;
+                setPlayersTurn(true);
             }
 
             base.Update(gameTime);
@@ -223,6 +224,14 @@ namespace DayofVictory
                     recentMoves.RemoveAt(0);
                 }
             }
+        }
+
+        public static void Reset()
+        {
+            playerShip.Reset();
+            enemyShip.Reset();
+            recentMoves.Clear();
+            playersTurn = true;
         }
     }
 }
