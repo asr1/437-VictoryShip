@@ -69,13 +69,13 @@ namespace DayofVictory.ScreenManager.Screens
             moveY = 0;
             foreach (String s in Game1.recentMoves)
             {
-                Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, s, new Vector2(movePos.X, movePos.Y + moveY), Color.Black);
-                moveY += MOVE_OFFSET;
+                Globals.Globals.spriteBatch.DrawString(Globals.Resources.Fonts.Georgia_16, s, new Vector2(movePos.X + 8, movePos.Y + moveY + 10), Color.Black);
+                moveY += MOVE_OFFSET + 5;
             }             
             //Recent moves gets an overlay too.
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)movePos.X, (int)movePos.Y, (int)moveSize.X, (int)moveSize.Y), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)movePos.X, (int)movePos.Y, (int)moveSize.X, (int)moveSize.Y + 50), Color.White);
 
-            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
+            Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y + 50), Color.White);
 
             //Overlay. Could make this a second screen with it's own handle input.
             Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.overlay, new Rectangle((int)menuPos.X, (int)menuPos.Y, (int)menuSize.X, (int)menuSize.Y), Color.White);
@@ -90,7 +90,7 @@ namespace DayofVictory.ScreenManager.Screens
                     else if ((int)selection == 1) vicky.setRepairing();
                     else if ((int)selection == 2) vicky.setBailing();
 
-                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X, menuY - 5, 32, 32), Color.Red);
+                    Globals.Globals.spriteBatch.Draw(Globals.Resources.Textures.rightArrow, new Rectangle((int)menuPos.X + 5, menuY - 2, 25, 25), Color.Red);
                 }
                 if (Entries[i].Enabled)
                 {
