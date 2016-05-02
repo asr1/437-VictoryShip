@@ -188,7 +188,6 @@ namespace DayofVictory
                 else if (vicky.isShooting()) spriteBatch.Draw(vickyShoot, new Rectangle(350, 600, 100, 100), Color.White);
                 else if (vicky.isRepairing()) spriteBatch.Draw(vickyRepair, new Rectangle(350, 600, 100, 100), Color.White);
                 else if (vicky.isBailing()) spriteBatch.Draw(vickyBail, new Rectangle(350, 600, 100, 100), Color.White);
-                else spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
 
             spriteBatch.End();
 
