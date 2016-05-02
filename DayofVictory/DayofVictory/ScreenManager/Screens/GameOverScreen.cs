@@ -21,6 +21,8 @@ namespace DayofVictory.ScreenManager.Screens
             gameOverScreen = Globals.Globals.content.Load<Texture2D>("screens/GameOverVictory");
             name = "GameOverScreen";
             MediaPlayer.Play(gameOverMusic);
+
+            state = ScreenState.Active;
         }
 
         public override void Update(float delta)

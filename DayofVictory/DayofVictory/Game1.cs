@@ -149,7 +149,8 @@ namespace DayofVictory
 
                 if (playerShip.WaterTaken() >= Ship.MAX_WATER)
                 {
-                    //TODO Transition to game over
+                    ScreenManager.ScreenManager.unloadScreen("GameScreen");
+                    ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameOverScreen());
                 }
 
                 enemyShip.DoMove();
@@ -157,7 +158,8 @@ namespace DayofVictory
 
                 if (enemyShip.WaterTaken() >= Ship.MAX_WATER)
                 {
-                    //TODO Transition to game over
+                    ScreenManager.ScreenManager.unloadScreen("GameScreen");
+                    ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameOverScreen());
                 }
 
                 playersTurn = true;
