@@ -8,7 +8,7 @@ namespace DayofVictory
         public const int WATER_PER_HOLE = 2;
         public const int WATER_PER_BAIL = 4;
 
-        public const int MAX_WATER = 100;
+        public const int MAX_WATER = 84;
 
         protected Game1 game;
 
