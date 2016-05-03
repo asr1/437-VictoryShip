@@ -186,12 +186,16 @@ namespace DayofVictory
                     spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
                     spriteBatch.Draw(explosionCloud, new Rectangle(500, 310, 80, 90), Color.White);
                 }
-                
-                if (vicky.isUnderAttack()) spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White);
+
+                if (vicky.isUnderAttack()) 
+                {
+                    spriteBatch.Draw(boom, new Rectangle(250, 600, 100, 85), Color.White);
+                    spriteBatch.Draw(boom, new Rectangle(430, 600, 130, 120), Color.White);
+                    spriteBatch.Draw(vickyHurt, new Rectangle(350, 600, 100, 100), Color.White); 
+                }
                 else if (vicky.isShooting()) spriteBatch.Draw(vickyShoot, new Rectangle(350, 600, 100, 100), Color.White);
                 else if (vicky.isRepairing()) spriteBatch.Draw(vickyRepair, new Rectangle(350, 600, 100, 100), Color.White);
                 else if (vicky.isBailing()) spriteBatch.Draw(vickyBail, new Rectangle(350, 600, 100, 100), Color.White);
-                else spriteBatch.Draw(vickyHappy, new Rectangle(350, 600, 100, 100), Color.White);
 
             spriteBatch.End();
 
