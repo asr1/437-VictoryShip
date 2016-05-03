@@ -72,7 +72,7 @@ namespace DayofVictory
             Globals.Globals.gameSize = new Vector2(GAME_SIZE_X, GAME_SIZE_Y);
             Globals.Globals.graphics.PreferredBackBufferWidth = (int)Globals.Globals.gameSize.X;
             Globals.Globals.graphics.PreferredBackBufferHeight = (int)Globals.Globals.gameSize.Y;
-            Globals.Globals.graphics.IsFullScreen = true;
+            //Globals.Globals.graphics.IsFullScreen = true;
             Globals.Globals.graphics.ApplyChanges();
 
             recentMoves = new List<string>();
@@ -147,7 +147,7 @@ namespace DayofVictory
             if (!playersTurn)
             {
                 timeSincePlayer += delta;
-                if(timeSincePlayer < 500)
+                if(timeSincePlayer < 1000)
                 {
                     return;
                 }
