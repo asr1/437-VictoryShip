@@ -43,6 +43,8 @@ namespace DayofVictory
         private Texture2D explosionCloud; // cloud effect
         private Watch watch;
 
+        private float timeSincePlayer; //How long has it been since the player took their turn
+
         public static List<string> recentMoves;
 
         public Game1()
@@ -144,6 +146,12 @@ namespace DayofVictory
 
             if (!playersTurn)
             {
+                timeSincePlayer += delta;
+                if(timeSincePlayer < 500)
+                {
+                    return;
+                }
+
                 vicky.resetStates();
 
                 playerShip.TakeOnWater();
@@ -164,6 +172,7 @@ namespace DayofVictory
                 }
 
                 setPlayersTurn(true);
+                timeSincePlayer = 0;
             }
 
             base.Update(gameTime);
