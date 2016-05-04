@@ -170,7 +170,7 @@ namespace DayofVictory
                 if (enemyShip.WaterTaken() >= Ship.MAX_WATER)
                 {
                     ScreenManager.ScreenManager.unloadScreen("GameScreen");
-                    ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameOverScreen());
+                    ScreenManager.ScreenManager.addScreen(new ScreenManager.Screens.GameWinScreen());
                 }
 
                 setPlayersTurn(true);
