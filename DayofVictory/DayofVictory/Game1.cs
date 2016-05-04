@@ -39,6 +39,7 @@ namespace DayofVictory
         private Texture2D vickyBail; // Vicky baling icon
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
+        private Texture2D plank;
         private Song gameMusic; 
         private Texture2D explosionCloud; // cloud effect
         private Watch watch;
@@ -102,6 +103,7 @@ namespace DayofVictory
             vickyBail = Content.Load<Texture2D>("images/VickyBailing");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
             boom = Content.Load<Texture2D>("images/boom");
+            plank = Content.Load<Texture2D>("images/plank");
             //gameMusic = Content.Load<Song>("music/battleMusic");
             //MediaPlayer.Play(gameMusic);
             explosionCloud = Content.Load<Texture2D>("images/explosionCloud");
@@ -189,7 +191,9 @@ namespace DayofVictory
             spriteBatch.Begin();
                 spriteBatch.Draw(gameBackground, new Rectangle(0, 0, 1000, 720), Color.White);
                 spriteBatch.Draw(enemyShipImg, new Rectangle(300, 290, 329, 177), Color.White);
-                
+
+                spriteBatch.Draw(plank, new Rectangle(370, 650, 100, 80), Color.White);
+
                 if (enemy.isUnderAttack())
                 {
                     spriteBatch.Draw(boom, new Rectangle(370, 400, 80, 50), Color.White);
