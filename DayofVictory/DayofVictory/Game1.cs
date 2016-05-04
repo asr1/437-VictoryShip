@@ -102,8 +102,8 @@ namespace DayofVictory
             vickyBail = Content.Load<Texture2D>("images/VickyBailing");
             enemyShipImg = Content.Load<Texture2D>("images/EnemyShip");
             boom = Content.Load<Texture2D>("images/boom");
-            gameMusic = Content.Load<Song>("music/battleMusic");
-            MediaPlayer.Play(gameMusic);
+            //gameMusic = Content.Load<Song>("music/battleMusic");
+            //MediaPlayer.Play(gameMusic);
             explosionCloud = Content.Load<Texture2D>("images/explosionCloud");
 
             // TODO: call all resource.load() methods
@@ -147,7 +147,7 @@ namespace DayofVictory
             if (!playersTurn)
             {
                 timeSincePlayer += delta;
-                if(timeSincePlayer < 1000)
+                if(timeSincePlayer < 2000)
                 {
                     return;
                 }

@@ -60,7 +60,7 @@ namespace DayofVictory
         // Icon changes back after 1 sec
         public void hurtIconCheck(Watch watch)
         {
-            if (underAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 1)
+            if (underAttack && (watch.getEllapsedSec() - vickyHurtIconInitialized) >= 2)
             {
                 underAttack = false;
             }

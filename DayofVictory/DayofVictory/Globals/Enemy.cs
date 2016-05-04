@@ -24,7 +24,7 @@ namespace DayofVictory
 
         public void hurtIconCheck(Watch watch)
         {
-            if (underAttack && (watch.getEllapsedSec() - hurtIconInitialized) >= 1)
+            if (underAttack && (watch.getEllapsedSec() - hurtIconInitialized) >= 2)
             {
                 underAttack = false;
             }
