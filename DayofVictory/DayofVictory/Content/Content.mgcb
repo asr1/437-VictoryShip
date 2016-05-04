@@ -223,18 +223,6 @@
 /processorParam:Quality=Best
 /build:sound/cannon.wav
 
-#begin sound/vickyBark.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/vickyBark.wav
-
-#begin sound/vickyPanic.wav
-/importer:WavImporter
-/processor:SoundEffectProcessor
-/processorParam:Quality=Best
-/build:sound/vickyPanic.wav
-
 #begin images/plank.png
 /importer:TextureImporter
 /processor:TextureProcessor
