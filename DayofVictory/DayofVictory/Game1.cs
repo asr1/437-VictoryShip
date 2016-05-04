@@ -39,7 +39,7 @@ namespace DayofVictory
         private Texture2D vickyBail; // Vicky baling icon
         private Texture2D enemyShipImg; // enemy ship img
         private Texture2D boom; // boom effect
-        private Song gameMusic; 
+        private static Song gameMusic; 
         private Texture2D explosionCloud; // cloud effect
         private Watch watch;
 
@@ -241,6 +241,7 @@ namespace DayofVictory
 
         public static void Reset()
         {
+            MediaPlayer.Play(gameMusic);
             playerShip.Reset();
             enemyShip.Reset();
             recentMoves.Clear();

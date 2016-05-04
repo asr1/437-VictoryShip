@@ -76,7 +76,7 @@ namespace DayofVictory
                 else
                     return AIMove.BUCKET;
             }
-            if (numHoles > 0)
+            if (numHoles > 0 && percentUs > 0)
                 if (rand.Next(2) == 0)
                     return AIMove.FIRE;
                 else

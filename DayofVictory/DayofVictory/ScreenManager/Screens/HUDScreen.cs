@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Audio;
 
 
 public enum options { ATTACK, REPAIR, BAIL }
@@ -33,6 +34,10 @@ namespace DayofVictory.ScreenManager.Screens
         private const int MOVE_OFFSET = 15;
         private int moveY = 0;
 
+        private SoundEffect fireEffect;
+        private SoundEffect repairEffect;
+        private SoundEffect bailEffect;
+
         //private Vector2 MenuPos = new Vector2( Globals.GameSize.X / 2, Globals.GameSize.Y / 3)
 
 
@@ -40,7 +45,11 @@ namespace DayofVictory.ScreenManager.Screens
         {
             name = "HUDScreen";
             state = ScreenState.Active;
-            updateEntries();   
+            updateEntries();
+            fireEffect = Globals.Globals.content.Load<SoundEffect>("sound/cannon");
+            repairEffect = Globals.Globals.content.Load<SoundEffect>("sound/boardSound");
+            bailEffect = Globals.Globals.content.Load<SoundEffect>("sound/bucketSound");
+            SoundEffect.MasterVolume = 1f;
         }
 
         public override void Update(float delta)
@@ -147,14 +156,17 @@ namespace DayofVictory.ScreenManager.Screens
                         Game1.playerShip.FireShot(Game1.enemyShip);
                         Game1.recentMoves.Add("You shot the enemy");
                         enemy.setUnderAttack(watch);
+                        fireEffect.Play();
                         break;
                     case options.BAIL:
                         Game1.playerShip.BailWater(WATER_BAIL_AMOUNT);
                         Game1.recentMoves.Add("You bailed water");
+                        bailEffect.Play();
                         break;
                     case options.REPAIR:
                         Game1.playerShip.Repair(REPAIR_HOLES_AMOUNT);
                         Game1.recentMoves.Add("You fixed a hole");
+                        repairEffect.Play();
                         break;
                 }
                 Game1.TrimRecentsList();

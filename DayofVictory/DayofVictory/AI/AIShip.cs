@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 namespace DayofVictory.AI
 {
@@ -8,12 +9,14 @@ namespace DayofVictory.AI
         private Ship opponent;
         Vicky vicky = new Vicky();
         Watch watch = new Watch();
+        private SoundEffect fireEffect;
 
         public AIShip(Game1 theGame, Texture2D texture, Ship opponent)
             : base(theGame, texture)
         {
             this.opponent = opponent;
             calc = new AIShipCalculator(Ship.MAX_WATER, Ship.MAX_WATER);
+            fireEffect = Globals.Globals.content.Load<SoundEffect>("sound/cannon");
         }
 
         public void DoMove()
@@ -25,6 +28,7 @@ namespace DayofVictory.AI
                     FireShot(opponent);
                     vicky.setUnderAttack(watch);
                     Game1.recentMoves.Add("AI fired a shot");
+                    fireEffect.Play();
                     break;
                 case AIMove.BOARD:
                     Repair(1);
